@@ -9,15 +9,15 @@ static class AudioManager
     static AudioClip musicBass;
     static AudioClip musicAccomp;
 
+    //Win and lose audio clips
     static AudioClip winSound;
     static AudioClip loseSound;
-
-   
 
     //Sample rate and frequency
     const int samplerate = 44100;
     static float frequency = 440;
 
+    //This function takes in a name and samples list to produce an audio clip 
     public static AudioClip CreateClip(List<float> samples, string name)
     {
         AudioClip clip;
@@ -26,6 +26,7 @@ static class AudioManager
         return clip;
     }
 
+    //Overload function for the create clip function that takes an array of samples instead
     public static AudioClip CreateClip(float[] samples, string name)
     {
         AudioClip clip;
@@ -34,6 +35,7 @@ static class AudioManager
         return clip;
     }
 
+    //This function mixes two samples lists together by adding the values together
     public static List<float> MixSamples(List<float> a, List<float> b)
     {
         List<float> c = new List<float>();
@@ -53,6 +55,7 @@ static class AudioManager
     }
 
     //This function will handle the synthesis of the creepy music to be played when the enemy appears
+    //as well as the win/lose sound
     public static void GenerateAudio()
     {
         //The two samples lists for the bass and accompaniments
@@ -69,8 +72,6 @@ static class AudioManager
 
         //Generate the pulsing bass for the creepy music
         WaveType w = WaveType.SAW;
-
-
         for (int i = 0; i < 20; i++)
         {
             Note1 = new List<float>();
@@ -105,7 +106,6 @@ static class AudioManager
             samplesBass.AddRange(Note3);
         }
        
-
         //Generate the high pitched accompanying tone
         for (int i = 0; i < 20; i++)
         {
@@ -152,6 +152,10 @@ static class AudioManager
         musicAccomp = AudioClip.Create("musicAccomp", samplesAccomp.Count, 2, samplerate, false);
         musicAccomp.SetData(samplesAccomp.ToArray(), 0);
 
+
+
+        w = WaveType.TRIANGLE;
+        //Create the win and lose audio
         e.Init(0.01f, 0, 0.8f, 0.01f, 1.0f, 1.0f);
 
         List<float> winSamples = new List<float>();
@@ -214,7 +218,7 @@ static class AudioManager
         winSound.SetData(winSamples.ToArray(), 0);
 
         //Create the accompaniments audio clip
-        loseSound = AudioClip.Create("musicAccomp", loseSamples.Count, 1, samplerate, false);
+        loseSound = AudioClip.Create("Lose Sound", loseSamples.Count, 1, samplerate, false);
         loseSound.SetData(loseSamples.ToArray(), 0);
 
     }
@@ -275,7 +279,9 @@ static class AudioManager
 
     public enum WaveType {  SINE, SQUARE, TRIANGLE, SAW, NOISE};
 
-
+    //This function will generate the harmonica 
+    //It will recieve a note value and will create the three components for the harmonica 
+    //The three components are then mixed and an audio clip is created from the result
     public static AudioClip GenerateHarmonica(int note)
     {
         Envelope e = new Envelope();
@@ -312,6 +318,7 @@ static class AudioManager
 
     //This function handles the synthesis of notes
     //It recieves the samples list it wants to add to, the length of the note, and the note number
+    //https://github.com/SFML/SFML/wiki/Synth
     public static List<float> Synth(List<float> sample, float length, int note, WaveType wave, float amplitude)
     {
 
@@ -352,26 +359,13 @@ static class AudioManager
                     sample.Add((amplitude * Mathf.Sin(time * frequency * (2 * Mathf.PI))) * 1000);
                     break;
             }
-            //Sine wave
-           // sample.Add((amplitude * Mathf.Sin(time * frequency * (2 * Mathf.PI))) * 1000);
-
-            //square wave
-            // sample.Add(Mathf.Sin(time * frequency * (2 * 3.14f)) > 0 ? 1.0f : -1.0f);
-
-            //Triangle Wave
-            //Mathf.Asin(Mathf.Sin(time * frequency * (2 * Mathf.PI)) * (2.0f / Mathf.PI));
-            
-            
-            //float remainder = time % (1 / frequency);
-            //sample.Add(((2.0f * Mathf.PI) * (frequency * Mathf.PI * remainder) - (Mathf.PI / 2.0f))*1000);
-
-           
         }
 
         return sample;
 
     }
 
+    //FIXME Doesnt work
     public static List<float> HighPassFilter(List<float> samples)
     {
         List<float> output = new List<float>(samples.Count);
@@ -396,6 +390,8 @@ static class AudioManager
 
         return output;
     }
+   
+    //This function performs a low pass filter on a given sample list
     public static List<float> LowPassFilter(List<float> sample)
     {
         float[] coeff = new float[7] { 0.0152193f, 0.08115433f, 0.23941581f, 0.32842112f, 0.23941581f, 0.08115433f, 0.0152193f };
@@ -442,6 +438,7 @@ static class AudioManager
         return sample;
     }
 
+    //This function uses an envelope to modulate a given sample list
     static public List<float> Modulate(List<float> samples, Envelope env)
     {
 
@@ -483,10 +480,8 @@ static class AudioManager
 
     static List<float> AddSamples(List<float> s1, List<float> s2)
     {
-        for(int i = 0; i < s2.Count; i++)
-        {
-            s1.Add(s2[i]);
-        }
+        s1.AddRange(s2);
+        
         return s1;
     }
 

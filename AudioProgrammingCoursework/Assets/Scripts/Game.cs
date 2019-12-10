@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
     public GameObject campfire;
     public GameObject fireLight;
     
+    //Game timer for campfire burnout
     float timer = 10.0f;
 
     //Tracks if the game is finished
@@ -18,11 +19,14 @@ public class Game : MonoBehaviour
     public GameObject enemy;
     public GameObject player;
 
+    //Raycast variables to find the enemy
     public LayerMask enemyMask;
     RaycastHit hit;
 
+    //Store all the game manager's audio sources
     AudioSource[] audioSources;
 
+    //Starting variables for the restart function
     Vector3 enemySpawnPos = new Vector3();
     Vector3 playerSpawnPos = new Vector3();
     float startFireMinIntensity = new float();
@@ -47,12 +51,13 @@ public class Game : MonoBehaviour
         audioSources[0].volume = 0.002f;
         audioSources[1].volume = 0.002f;
 
-
+        //Store starting values
         startFireMinIntensity = fireLight.GetComponentInChildren<AnimatedFire>().MinIntensity;
         startFireMaxIntensity = fireLight.GetComponentInChildren<AnimatedFire>().MaxIntensity;
         enemySpawnPos = enemy.transform.position;
         playerSpawnPos = player.transform.position;
 
+        //Init UI
         UI.SetActive(true);
         menu.SetActive(false);
 
@@ -99,7 +104,6 @@ public class Game : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && player.GetComponent<CharacterController>().ammo > 0)
             {
 
-                audioSources[2].clip = AudioManager.getWin();
                 audioSources[0].Stop();
                 audioSources[1].Stop();
 
@@ -113,14 +117,20 @@ public class Game : MonoBehaviour
 
                     //Ragdoll enemy
                     enemy.transform.Rotate(new Vector3(90, 0, 0));
-
+                    audioSources[2].clip = AudioManager.getWin();
                     audioSources[2].Play();
                 }
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            audioSources[2].clip = AudioManager.getWin();
+            audioSources[2].Play();
+
+        }
         //Handles if the enemy catches the player and the lose state
-        if(enemy.GetComponent<EnemyController>().caught)
+        if (enemy.GetComponent<EnemyController>().caught && !gameOver)
         {
             audioSources[2].clip = AudioManager.getLose();
 

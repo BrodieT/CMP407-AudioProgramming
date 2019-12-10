@@ -10,7 +10,6 @@ ScriptsOnlyBuild:
     - SteamAudio.SteamAudioManager
     - SteamAudio.SteamAudioMaterial
     - SteamAudio.SteamAudioSource
-    - Test
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -19,6 +18,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -81,33 +81,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9930}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10142}
+      Script: {instanceID: 10140}
     - Class: 114
-      Script: {instanceID: 10206}
+      Script: {instanceID: 10204}
     - Class: 114
-      Script: {instanceID: 10242}
+      Script: {instanceID: 10240}
     - Class: 114
-      Script: {instanceID: 10280}
+      Script: {instanceID: 10278}
     - Class: 114
-      Script: {instanceID: 10386}
+      Script: {instanceID: 10384}
     - Class: 114
-      Script: {instanceID: 10438}
+      Script: {instanceID: 10436}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10474}
     - Class: 114
-      Script: {instanceID: 10648}
+      Script: {instanceID: 10646}
     - Class: 114
-      Script: {instanceID: 10912}
+      Script: {instanceID: 10910}
     - Class: 114
-      Script: {instanceID: 10942}
+      Script: {instanceID: 10940}
     - Class: 114
-      Script: {instanceID: 11124}
+      Script: {instanceID: 11122}
     - Class: 114
-      Script: {instanceID: 11488}
+      Script: {instanceID: 11484}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11520}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -263,12 +263,6 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 6dd3e3d299ee2970a0b02044c0f84b71
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Jemeza.SFASFX
-    className: SoundPlayer
-  - hash:
-      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -339,12 +333,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
-  - hash:
-      serializedVersion: 2
-      Hash: 58ada7571c8b4799115fffd7a4dbafff
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Test
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -425,7 +413,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: b892fdf5e9167ef46feff2659308945b
+      Hash: 480370349346e75a0b8e1a29f88420cf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterController
@@ -485,12 +473,6 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnemyAnimator
-  - hash:
-      serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -519,12 +501,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: Physics2DRaycaster
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GroundCheck
   - hash:
       serializedVersion: 2
       Hash: f6df20cbee89ba8b352c21981eace9ff
@@ -573,12 +549,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
-  - hash:
-      serializedVersion: 2
-      Hash: 1a31246343756c34b1faa8799ec022b9
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SimpleShoot
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -684,4 +654,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/templ/OneDrive/Desktop/AudioProg/Build/AudioProgrammingCoursework.exe
+  playerPath: C:/Users/templ/OneDrive/Desktop/AudioProgRepo/Build/AudioProgrammingCoursework.exe
